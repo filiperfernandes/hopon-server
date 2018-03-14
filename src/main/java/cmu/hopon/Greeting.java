@@ -1,4 +1,4 @@
-package hello;
+package cmu.hopon;
 
 public class Greeting {
 
