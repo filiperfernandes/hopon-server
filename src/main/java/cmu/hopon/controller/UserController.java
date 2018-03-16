@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
-public class UserController {
+class UserController {
 
     @Autowired
     UserService userService;
@@ -19,8 +19,7 @@ public class UserController {
 
     @RequestMapping(path = "/user/list", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    @ResponseBody
-    Iterable<User> list() {
+    @ResponseBody Iterable<User> list() {
         return userService.getUsers();
     }
 

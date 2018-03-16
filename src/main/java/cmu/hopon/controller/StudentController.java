@@ -22,13 +22,6 @@ class StudentController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView("student");
-        modelAndView.addObject("students", studentService.getStudents());
-        return modelAndView;
-    }
-
     @RequestMapping(path = "/list", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody Iterable<Student> list() {
