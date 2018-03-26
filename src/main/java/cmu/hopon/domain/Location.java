@@ -1,9 +1,6 @@
 package cmu.hopon.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="location", schema = "public")
@@ -12,6 +9,7 @@ public class Location {
     @Id
     String name;
     @OneToOne
+    @JoinColumn(name = "quiz", nullable = false)
     Quiz quiz;
 
     public String getName(){
