@@ -30,7 +30,7 @@ public class Question {
         return rightAnswer;
     }
 
-    public void setRightAnswer(String question){
+    public void setRightAnswer(String rightAnswer){
         this.rightAnswer = rightAnswer;
     }
 

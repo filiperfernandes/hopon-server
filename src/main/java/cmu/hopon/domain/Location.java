@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="location", schema = "public")
 public class Location {
 
-    @Id @JsonIgnore @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @JsonIgnore
     String name;
     @OneToOne
     @JoinColumn(name = "quiz", nullable = false)
