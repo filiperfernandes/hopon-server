@@ -1,9 +1,8 @@
 package cmu.hopon.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +10,18 @@ import java.util.List;
 @Table(name="quiz", schema = "public")
 public class Quiz {
 
-    @Id
-    int id;
+    @Id @JsonIgnore @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
 
     @OneToMany
     List<Question> questionsList = new ArrayList<>();
 
-    public List<Question> getQuestion() {
+    public List<Question> getQuestionList() {
         return questionsList;
+    }
+
+    public void setQuestionsList(List<Question> questionsList){
+        this.questionsList = questionsList;
     }
 
 }

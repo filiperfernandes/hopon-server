@@ -1,9 +1,8 @@
 package cmu.hopon.domain;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +10,13 @@ import java.util.List;
 @Table(name="question", schema = "public")
 public class Question {
 
-    @Id
-    int id;
+    @Id @JsonIgnore @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
     String question;
     String rightAnswer;
 
     @ElementCollection
-    List<String> options = new ArrayList<String>();
+    List<String> options;
 
     public String getQuestion(){
         return question;
@@ -33,6 +32,14 @@ public class Question {
 
     public void setRightAnswer(String question){
         this.rightAnswer = rightAnswer;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions (List<String> options) {
+        this.options = options;
     }
 
 }

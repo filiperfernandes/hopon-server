@@ -1,12 +1,14 @@
 package cmu.hopon.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="location", schema = "public")
 public class Location {
 
-    @Id
+    @Id @JsonIgnore @GeneratedValue(strategy = GenerationType.AUTO)
     String name;
     @OneToOne
     @JoinColumn(name = "quiz", nullable = false)

@@ -32,8 +32,9 @@ class UserController {
 
         User user = new User();
         user.setCode(code);
-        user.setUserName(username);
+        user.setUsername(username);
         userService.signUp(user);
         return "Saved";
     }
+
 }
