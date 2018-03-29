@@ -18,6 +18,7 @@ public class UserService {
 
     public String login(String username, long code) {
 
+        //TODO verify inputs and if username and code corresponds
         User user = userRepository.findByUsername(username);
 
         //TODO add token to list of tokens and check for repeated
@@ -37,6 +38,8 @@ public class UserService {
     }
 
     public User signUp(User user) {
+
+        //TODO username must be unique and the code must have nerver been used before
 
         userRepository.save(user);
         return user;
