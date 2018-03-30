@@ -22,28 +22,27 @@ public class UserService {
     public static final String USER_LOGOUT_FAILURE_MESSAGE = "Failed to logout";
 
     public static final String USER_LOGIN_SUCCESS_MESSAGE = "Successfully loggin in";
-    public static final String USER_LOGIN_FAILURE_MESSAGE = "Failed to logout";
+    public static final String USER_LOGIN_FAILURE_MESSAGE = "Failed to login";
 
     public static final String USER_SIGNUP_SUCCESS_MESSAGE = "Successfully signed up";
     public static final String USER_SIGNUP_FAILURE_MESSAGE = "Failed to sign up";
 
     private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
+    private static List<String> tokenList = new ArrayList<>();
 
     public String login(String username, long code) {
 
         User exist = userRepository.findByUsername(username);
         if(exist!=null && exist.getCode()==code){
             User user = userRepository.findByUsername(username);
-            String token = UUID.randomUUID().toString();
+            String token = genToken();
             user.setToken(token);
+            tokenList.add(token);
             userRepository.save(user);
             return token;
         }else{
             return USER_LOGIN_FAILURE_MESSAGE;
         }
-        
-        //TODO add token to list of tokens and check for repeated
-
     }
 
     public String logout(String token) {
@@ -75,6 +74,14 @@ public class UserService {
 
     public Iterable<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    private String genToken(){
+        String token = UUID.randomUUID().toString();
+        while (tokenList.contains(token)){
+            token = UUID.randomUUID().toString();
+        }
+        return token;
     }
 }
 
