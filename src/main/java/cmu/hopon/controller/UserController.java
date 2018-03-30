@@ -33,8 +33,7 @@ class UserController {
         User user = new User();
         user.setCode(code);
         user.setUsername(username);
-        userService.signUp(user);
-        return "Saved";
+        return userService.signUp(user);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)

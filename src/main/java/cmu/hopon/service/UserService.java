@@ -5,7 +5,10 @@ import cmu.hopon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @Service
 public class UserService {
@@ -15,6 +18,11 @@ public class UserService {
 
     public static final String USER_LOGOUT_SUCCESS_MESSAGE = "Successfully logged out";
     public static final String USER_LOGOUT_FAILURE_MESSAGE = "Failed to logout";
+
+    public static final String USER_SIGNUP_SUCCESS_MESSAGE = "Successfully signed up";
+    public static final String USER_SIGNUP_FAILURE_MESSAGE = "Failed to sign up";
+
+    private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
 
     public String login(String username, long code) {
 
@@ -39,12 +47,18 @@ public class UserService {
         return USER_LOGOUT_SUCCESS_MESSAGE;
     }
 
-    public User signUp(User user) {
+    public String signUp(User user) {
 
         //TODO username must be unique and the code must have nerver been used before
 
-        userRepository.save(user);
-        return user;
+
+        boolean contains = LongStream.of(codeList).anyMatch(x -> x == user.getCode());
+        if (contains){
+            userRepository.save(user);
+            return USER_SIGNUP_SUCCESS_MESSAGE;
+        }else{
+            return USER_SIGNUP_FAILURE_MESSAGE;
+        }
 
 
     }
