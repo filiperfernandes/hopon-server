@@ -30,10 +30,7 @@ class UserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        User user = new User();
-        user.setCode(code);
-        user.setUsername(username);
-        return userService.signUp(user);
+        return userService.signUp(username, code);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
