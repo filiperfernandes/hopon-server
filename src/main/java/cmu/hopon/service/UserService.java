@@ -76,6 +76,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUser(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     private String genToken(){
         String token = UUID.randomUUID().toString();
         while (tokenList.contains(token)){
