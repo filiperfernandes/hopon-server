@@ -21,6 +21,8 @@ public class UserService {
         //TODO verify inputs and if username and code corresponds
         User user = userRepository.findByUsername(username);
 
+        //TODO if user does not exist return error
+
         //TODO add token to list of tokens and check for repeated
         String token = UUID.randomUUID().toString();
         user.setToken(token);

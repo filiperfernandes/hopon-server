@@ -16,6 +16,9 @@ public class User {
     String username; //unique
     String token;
 
+    @OneToOne @JoinColumn(name = "score")
+    Score score;
+
     @Column(unique=true, nullable=false)
     long code; //never used before
 
@@ -61,5 +64,16 @@ public class User {
 
         this.code = code;
     }
+
+    public Score getScore () {
+
+        return score;
+    }
+
+    public void setScore(Score score) {
+
+        this.score = score;
+    }
+
 
 }
