@@ -45,23 +45,6 @@ public class Application {
 
             questionRepository.save(question1);
 
-            //Populate Quizzes
-            List<Question> questionList = new ArrayList<>();
-            questionList.add(question1);
-
-            Quiz quiz1 = new Quiz();
-            quiz1.setQuestionsList(questionList);
-            quizRepository.save(quiz1);
-
-
-            //Populate Locations
-            Location location1 = new Location();
-
-            location1.setName("Torre de Belem");
-            location1.setQuiz(quiz1);
-
-            locationRepository.save(location1);
-//TESTE
             Question question2 = new Question();
 
 
@@ -79,21 +62,26 @@ public class Application {
             questionRepository.save(question2);
 
             //Populate Quizzes
-            List<Question> questionList2 = new ArrayList<>();
-            questionList2.add(question2);
+            List<Question> questionList = new ArrayList<>();
+            questionList.add(question1);
+            questionList.add(question2);
 
-            Quiz quiz2 = new Quiz();
-            quiz2.setQuestionsList(questionList2);
-            quizRepository.save(quiz2);
+            Quiz quiz1 = new Quiz();
+            quiz1.setQuestionsList(questionList);
+            quizRepository.save(quiz1);
 
 
             //Populate Locations
-            Location location2 = new Location();
+            Location location1 = new Location();
 
-            location2.setName("Torre de Belem2");
-            location2.setQuiz(quiz2);
+            location1.setName("Torre de Belem");
+            location1.setQuiz(quiz1);
 
-            locationRepository.save(location2);
+            locationRepository.save(location1);
+//TESTE
+
+
+
 
         };
     }
