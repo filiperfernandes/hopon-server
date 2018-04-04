@@ -30,7 +30,7 @@ public class UserService {
     private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
     private static List<String> tokenList = new ArrayList<>();
 
-    public String login(String username, long code) {
+    public User login(String username, long code) {
 
         User exist = userRepository.findByUsername(username);
         if(exist!=null && exist.getCode()==code){
@@ -39,9 +39,9 @@ public class UserService {
             user.setToken(token);
             tokenList.add(token);
             userRepository.save(user);
-            return token;
+            return user;
         }else{
-            return USER_LOGIN_FAILURE_MESSAGE;
+            return null;
         }
     }
 
