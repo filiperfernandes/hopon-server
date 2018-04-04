@@ -31,6 +31,7 @@ public class Application {
             //Populate Questions
             Question question1 = new Question();
 
+
             List<String> options = new ArrayList<>();
             String rAns = "Belem";
             options.add(rAns);
@@ -60,6 +61,39 @@ public class Application {
             location1.setQuiz(quiz1);
 
             locationRepository.save(location1);
+//TESTE
+            Question question2 = new Question();
+
+
+            List<String> options2 = new ArrayList<>();
+            String rAns2 = "Belem2";
+            options2.add(rAns2);
+            options2.add("Alcanena2");
+            options2.add("Londres2");
+            options2.add("Porto2");
+
+            question2.setQuestion("Onde fica a Torre de Belém2?");
+            question2.setRightAnswer("Belem2");
+            question2.setOptions(options2);
+
+            questionRepository.save(question2);
+
+            //Populate Quizzes
+            List<Question> questionList2 = new ArrayList<>();
+            questionList2.add(question2);
+
+            Quiz quiz2 = new Quiz();
+            quiz2.setQuestionsList(questionList2);
+            quizRepository.save(quiz2);
+
+
+            //Populate Locations
+            Location location2 = new Location();
+
+            location2.setName("Torre de Belem2");
+            location2.setQuiz(quiz2);
+
+            locationRepository.save(location2);
 
         };
     }
