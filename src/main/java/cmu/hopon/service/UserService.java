@@ -1,5 +1,6 @@
 package cmu.hopon.service;
 
+import cmu.hopon.domain.Score;
 import cmu.hopon.domain.User;
 import cmu.hopon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,12 @@ public class UserService {
             User user = new User();
             user.setUsername(username);
             user.setCode(code);
+
+            Score score = new Score();
+            score.setAnswered(0);
+            score.setCorrect(0);
+
+            user.setScore(score);
 
             try{
                 userRepository.save(user);
