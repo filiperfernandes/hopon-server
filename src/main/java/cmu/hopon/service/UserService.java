@@ -2,6 +2,7 @@ package cmu.hopon.service;
 
 import cmu.hopon.domain.Score;
 import cmu.hopon.domain.User;
+import cmu.hopon.repository.ScoreRepository;
 import cmu.hopon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ScoreRepository scoreRepository;
 
     public static final String USER_LOGOUT_SUCCESS_MESSAGE = "Successfully logged out";
     public static final String USER_LOGOUT_FAILURE_MESSAGE = "Failed to logout";
@@ -66,6 +70,7 @@ public class UserService {
             score.setAnswered(0);
             score.setCorrect(0);
 
+            scoreRepository.save(score);
             user.setScore(score);
 
             try{
