@@ -32,6 +32,8 @@ public class UserService {
     public static final String USER_SIGNUP_SUCCESS_MESSAGE = "Successfully signed up";
     public static final String USER_SIGNUP_FAILURE_MESSAGE = "Failed to sign up";
 
+    public static final String USER_UPDATE_SUCCESS_MESSAGE = "Successfully updated";
+
     private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
     private static List<String> tokenList = new ArrayList<>();
 
@@ -48,6 +50,17 @@ public class UserService {
         }else{
             return null;
         }
+    }
+
+    public String updateScore(String token, int ans, int right) {
+
+        //TODO Fazer verificaçoes e ver da segurança
+        User exist = userRepository.findByToken(token);
+        exist.getScore().setAnswered(ans);
+        exist.getScore().setCorrect(right);
+        userRepository.save(exist);
+
+        return USER_UPDATE_SUCCESS_MESSAGE;
     }
 
     public String logout(String token) {

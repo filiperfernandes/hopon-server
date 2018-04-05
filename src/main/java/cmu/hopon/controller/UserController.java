@@ -60,4 +60,14 @@ class UserController {
 
         return userService.getUser(username);
     }
+
+    @RequestMapping(value = "updateScore", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String updateScore (@RequestParam String token,
+                                         @RequestParam int ans, @RequestParam int right) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        return userService.updateScore(token, ans, right);
+    }
 }
