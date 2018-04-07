@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/")
 public class LocationController {
@@ -29,6 +31,16 @@ public class LocationController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         return locationService.getLocation(name);
+    }
+
+    @RequestMapping(value = "/locationId", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody
+    Location getById (@RequestParam int id) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        return locationService.getLocationById(id);
     }
 
 }

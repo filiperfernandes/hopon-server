@@ -8,11 +8,24 @@ import javax.persistence.*;
 @Table(name="location", schema = "public")
 public class Location {
 
-    @Id
+    @TableGenerator(name = "id_gen", initialValue = 0)
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO, generator = "id_gen")
+    int id;
+
+    //@Id
     String name;
     @OneToOne
     @JoinColumn(name = "quiz", nullable = false)
     Quiz quiz;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName(){
         return name;

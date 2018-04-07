@@ -5,6 +5,8 @@ import cmu.hopon.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LocationService {
 
@@ -23,4 +25,10 @@ public class LocationService {
     public Location getLocation(String name){
         return locationRepository.findByName(name);
     }
+
+    public Location getLocationById(int id){
+        return locationRepository.findById(id);
+    }
+
+
 }
