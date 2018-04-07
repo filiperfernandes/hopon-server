@@ -28,7 +28,7 @@ public class Application {
     public CommandLineRunner populateQuestion(QuestionRepository questionRepository, QuizRepository quizRepository, LocationRepository locationRepository){
         return (args) -> {
 
-            //Populate Questions
+            // Pop. Question1
             Question question1 = new Question();
 
 
@@ -45,6 +45,7 @@ public class Application {
 
             questionRepository.save(question1);
 
+            // Pop. Question2
             Question question2 = new Question();
 
 
@@ -61,7 +62,40 @@ public class Application {
 
             questionRepository.save(question2);
 
-            //Populate Quizzes
+
+            // Pop. Question3
+            Question question3 = new Question();
+
+            List<String> options3 = new ArrayList<>();
+            String rAns3 = "Eiffel";
+            options3.add(rAns3);
+            options3.add("Jacob");
+            options3.add("Pina");
+            options3.add("Filipe");
+
+            question3.setQuestion("Quem desenhou a Torre Eiffel?");
+            question3.setRightAnswer(rAns3);
+            question3.setOptions(options3);
+
+            questionRepository.save(question3);
+
+            // Pop. Question4
+            Question question4 = new Question();
+
+            List<String> options4 = new ArrayList<>();
+            String rAns4 = "Eiffel";
+            options4.add(rAns4);
+            options4.add("Ze Pedro");
+            options4.add("Ze Pedro dos chutos");
+            options4.add("Tiago");
+
+            question4.setQuestion("Quem desenhou a Ponte D.Luis?");
+            question4.setRightAnswer(rAns4);
+            question4.setOptions(options4);
+
+            questionRepository.save(question4);
+
+            //Populate Quizzes 1
             List<Question> questionList = new ArrayList<>();
             questionList.add(question1);
             questionList.add(question2);
@@ -70,14 +104,33 @@ public class Application {
             quiz1.setQuestionsList(questionList);
             quizRepository.save(quiz1);
 
+            //Populate Quizzes 2
+            List<Question> questionList2 = new ArrayList<>();
+            questionList2.add(question3);
+            questionList2.add(question4);
 
-            //Populate Locations
+            Quiz quiz2 = new Quiz();
+            quiz2.setQuestionsList(questionList2);
+            quizRepository.save(quiz2);
+
+
+
+            //Populate Locations1
             Location location1 = new Location();
 
             location1.setName("Torre de Belem");
             location1.setQuiz(quiz1);
 
             locationRepository.save(location1);
+
+
+            //Populate Locations2
+            Location location2 = new Location();
+
+            location2.setName("Torre Eiffel");
+            location2.setQuiz(quiz2);
+
+            locationRepository.save(location2);
 //TESTE
 
 
