@@ -23,7 +23,7 @@ class UserController {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "signUp", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+/*    @RequestMapping(value = "signUp", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody String addUser (@RequestParam Integer code,
                                             @RequestParam String username) {
@@ -31,7 +31,7 @@ class UserController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         return userService.signUp(username, code);
-    }
+    }*/
 
     @RequestMapping(value = "login", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
@@ -71,7 +71,7 @@ class UserController {
         return userService.updateScore(token, ans, right);
     }
 
-    @RequestMapping(value = "TestSignUp", method = RequestMethod.POST)
+    @RequestMapping(value = "signUp", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody String addUser (@RequestBody User user) {
         // @ResponseBody means the returned String is the response, not a view name
