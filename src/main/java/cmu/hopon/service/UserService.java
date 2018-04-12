@@ -112,6 +112,29 @@ public class UserService {
         }
         return token;
     }
+
+    public String signUp(User user) {
+
+        boolean contains = LongStream.of(codeList).anyMatch(x -> x == user.getCode());
+        if (contains && userRepository.findByUsername(user.getUsername())==null){
+
+            Score score = new Score();
+            score.setAnswered(0);
+            score.setCorrect(0);
+
+            scoreRepository.save(score);
+            user.setScore(score);
+
+            try{
+                userRepository.save(user);
+                return USER_SIGNUP_SUCCESS_MESSAGE;
+            }catch (Exception e){
+                return USER_SIGNUP_FAILURE_MESSAGE;
+            }
+        }else{
+            return USER_SIGNUP_FAILURE_MESSAGE;
+        }
+    }
 }
 
 

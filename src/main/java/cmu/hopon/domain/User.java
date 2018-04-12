@@ -35,6 +35,14 @@ public class User {
         this.id = id;
     }*/
 
+    public User(){
+
+    }
+    public User(String username, String token){
+        this.username=username;
+        this.token=token;
+    }
+
     public String getUsername() {
 
         return username;
