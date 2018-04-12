@@ -131,7 +131,114 @@ public class Application {
             location2.setQuiz(quiz2);
 
             locationRepository.save(location2);
-//TESTE
+
+
+
+            // Pop. JQuestion1
+            Question jQuestion1 = new Question();
+
+
+            List<String> jOptions = new ArrayList<>();
+            String jRAns = "Belem";
+            jOptions.add(jRAns);
+            jOptions.add("Benfica");
+            jOptions.add("Jeronimos");
+            jOptions.add("Porto");
+
+            jQuestion1.setQuestion("Onde fica o Mosteiro dos Jerónimos?");
+            jQuestion1.setRightAnswer(jRAns);
+            jQuestion1.setOptions(jOptions);
+
+            questionRepository.save(jQuestion1);
+
+            // Pop. JQuestion2
+            Question jQuestion2 = new Question();
+
+
+            List<String> jOptions2 = new ArrayList<>();
+            String jRAns2 = "Manuelino";
+            jOptions2.add("Barroco");
+            jOptions2.add("Gótico");
+            jOptions2.add(jRAns2);
+            jOptions2.add("Moderno");
+
+            jQuestion2.setQuestion("Qual o estilo dominante do Mosteiro dos Jerónimos?");
+            jQuestion2.setRightAnswer(jRAns2);
+            jQuestion2.setOptions(jOptions2);
+
+            questionRepository.save(jQuestion2);
+
+            //Populate JQuizzes 1
+            List<Question> jQuestionList = new ArrayList<>();
+            jQuestionList.add(jQuestion1);
+            jQuestionList.add(jQuestion2);
+
+            Quiz jeronimosQuiz = new Quiz();
+            jeronimosQuiz.setQuestionsList(jQuestionList);
+            quizRepository.save(jeronimosQuiz);
+
+            //Populate Locations3
+            Location jeronimos = new Location();
+
+            jeronimos.setName("Mosteiro dos Jerónimos");
+            jeronimos.setQuiz(jeronimosQuiz);
+
+            locationRepository.save(jeronimos);
+
+
+
+            //PORTO LOCATION
+
+            // Pop. PQuestion1
+            Question pQuestion1 = new Question();
+
+
+            List<String> pOptions = new ArrayList<>();
+            String pRAns = "Porto";
+            pOptions.add("Abrantes");
+            pOptions.add("Coimbra");
+            pOptions.add("Viseu");
+            pOptions.add(pRAns);
+
+            pQuestion1.setQuestion("Onde fica a Torre dos Clérigos?");
+            pQuestion1.setRightAnswer(pRAns);
+            pQuestion1.setOptions(pOptions);
+
+            questionRepository.save(pQuestion1);
+
+            // Pop. pQuestion2
+            Question pQuestion2 = new Question();
+
+
+            List<String> pOptions2 = new ArrayList<>();
+            String pRAns2 = "Barroco";
+            pOptions2.add("Manuelino");
+            pOptions2.add("Gótico");
+            pOptions2.add(pRAns2);
+            pOptions2.add("Moderno");
+
+            pQuestion2.setQuestion("Qual o estilo dominante da Torre dos Clérigos?");
+            pQuestion2.setRightAnswer(pRAns2);
+            pQuestion2.setOptions(pOptions2);
+
+            questionRepository.save(pQuestion2);
+
+            //Populate pQuizzes 1
+            List<Question> pQuestionList = new ArrayList<>();
+            pQuestionList.add(pQuestion1);
+            pQuestionList.add(pQuestion2);
+
+            Quiz clerigosQuiz = new Quiz();
+            clerigosQuiz.setQuestionsList(pQuestionList);
+            quizRepository.save(clerigosQuiz);
+
+            //Populate Locations4
+            Location clerigos = new Location();
+
+            clerigos.setName("Torre dos Clérigos");
+            clerigos.setQuiz(clerigosQuiz);
+
+            locationRepository.save(clerigos);
 
 
 
