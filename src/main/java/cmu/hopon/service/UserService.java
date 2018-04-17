@@ -122,8 +122,15 @@ public class UserService {
             score.setAnswered(0);
             score.setCorrect(0);
 
+            Score currentScore = new Score();
+            currentScore.setAnswered(0);
+            currentScore.setCorrect(0);
+
             scoreRepository.save(score);
+            scoreRepository.save(currentScore);
+
             user.setScore(score);
+            user.setCurrentScore(currentScore);
 
             try{
                 userRepository.save(user);
@@ -134,6 +141,24 @@ public class UserService {
         }else{
             return USER_SIGNUP_FAILURE_MESSAGE;
         }
+    }
+
+    public String updateUser(User user) {
+
+        //TODO Fazer verificaçoes e ver da segurança
+        User exist = userRepository.findByToken(user.getToken());
+        exist.getScore().setAnswered(user.getScore().getAnswered());
+        exist.getScore().setCorrect(user.getScore().getCorrect());
+
+        exist.getCurrentScore().setAnswered(user.getCurrentScore().getAnswered());
+        exist.getCurrentScore().setCorrect(user.getCurrentScore().getCorrect());
+
+        exist.setCurrentMonument(user.getCurrentMonument());
+        exist.setAnsweredLocations(user.getAnsweredLocations());
+
+        userRepository.save(exist);
+
+        return USER_UPDATE_SUCCESS_MESSAGE;
     }
 }
 

@@ -79,4 +79,10 @@ class UserController {
 
         return userService.signUp(user);
     }
+
+    @RequestMapping(value = "updateUser", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String updateScore (@RequestBody User user) {
+        return userService.updateUser(user);
+    }
 }

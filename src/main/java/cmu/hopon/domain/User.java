@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.*;
 import javax.validation.Constraint;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="user", schema = "public", uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
@@ -22,22 +24,27 @@ public class User {
     @Column(unique=true, nullable=false)
     long code; //never used before
 
-/*    @Id @JsonIgnore @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    @OneToOne
+    Score currentScore;
+    private String currentMonument;
 
-    public long getId() {
-
-        return id;
-    }
-
-    public void setId(long id) {
-
-        this.id = id;
-    }*/
+    @ElementCollection
+    private List<String> answeredLocations = new ArrayList<>();
 
     public User(){
-
     }
+
+    public User(String username, long code, String token, Score score, Score currentScore,
+                String currentMonument, List<String> answeredLocations){
+        this.code=code;
+        this.username=username;
+        this.token=token;
+        this.score=score;
+        this.currentScore=currentScore;
+        this.currentMonument=currentMonument;
+        this.answeredLocations=answeredLocations;
+    }
+
     public User(String username, String token){
         this.username=username;
         this.token=token;
@@ -81,6 +88,30 @@ public class User {
     public void setScore(Score score) {
 
         this.score = score;
+    }
+
+    public void setCurrentMonument(String currentMonument) {
+        this.currentMonument = currentMonument;
+    }
+
+    public void setCurrentScore(Score currentScore) {
+        this.currentScore = currentScore;
+    }
+
+    public Score getCurrentScore() {
+        return currentScore;
+    }
+
+    public String getCurrentMonument() {
+        return currentMonument;
+    }
+
+    public void setAnsweredLocations(List<String> answeredLocations) {
+        this.answeredLocations = answeredLocations;
+    }
+
+    public List<String> getAnsweredLocations() {
+        return answeredLocations;
     }
 
 
