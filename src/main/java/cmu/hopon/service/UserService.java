@@ -121,10 +121,12 @@ public class UserService {
             Score score = new Score();
             score.setAnswered(0);
             score.setCorrect(0);
+            score.setElapsedSeconds(0.0);
 
             Score currentScore = new Score();
             currentScore.setAnswered(0);
             currentScore.setCorrect(0);
+            currentScore.setElapsedSeconds(0.0);
 
             scoreRepository.save(score);
             scoreRepository.save(currentScore);
@@ -149,9 +151,12 @@ public class UserService {
         User exist = userRepository.findByToken(user.getToken());
         exist.getScore().setAnswered(user.getScore().getAnswered());
         exist.getScore().setCorrect(user.getScore().getCorrect());
+        exist.getScore().setElapsedSeconds(exist.getScore().getElapsedSeconds()
+                +user.getCurrentScore().getElapsedSeconds());
 
         exist.getCurrentScore().setAnswered(user.getCurrentScore().getAnswered());
         exist.getCurrentScore().setCorrect(user.getCurrentScore().getCorrect());
+        exist.getCurrentScore().setElapsedSeconds(user.getCurrentScore().getElapsedSeconds());
 
         exist.setCurrentMonument(user.getCurrentMonument());
         exist.setAnsweredLocations(user.getAnsweredLocations());

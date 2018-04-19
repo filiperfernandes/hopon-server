@@ -15,6 +15,8 @@ public class Score {
 
     int answered;
 
+    double elapsedSeconds;
+
     public int getCorrect () {
 
         return correct;
@@ -35,4 +37,11 @@ public class Score {
         this.answered = answered;
     }
 
+    public double getElapsedSeconds() {
+        return elapsedSeconds;
+    }
+
+    public void setElapsedSeconds(double elapsedSeconds) {
+        this.elapsedSeconds = elapsedSeconds;
+    }
 }
