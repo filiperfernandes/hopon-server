@@ -50,17 +50,34 @@ public class Application {
 
 
             List<String> options2 = new ArrayList<>();
-            String rAns2 = "Belem2";
+            String rAns2 = "Manuelino";
+            options2.add("Barroco");
+            options2.add("Pombalino");
+            options2.add("Rococó");
             options2.add(rAns2);
-            options2.add("Alcanena2");
-            options2.add("Londres2");
-            options2.add("Porto2");
 
-            question2.setQuestion("Onde fica a Torre de Belém2?");
-            question2.setRightAnswer("Belem2");
+            question2.setQuestion("Qual é o estilo da Torre de Belem?");
+            question2.setRightAnswer(rAns2);
             question2.setOptions(options2);
 
             questionRepository.save(question2);
+
+            // Pop. Belem Question3
+            Question belemQuestion3 = new Question();
+
+
+            List<String> belemQuestion3Options = new ArrayList<>();
+            String belemQuestion3rAns = "XVI";
+            belemQuestion3Options.add("XV");
+            belemQuestion3Options.add("XIV");
+            belemQuestion3Options.add(belemQuestion3rAns);
+            belemQuestion3Options.add("XVIII");
+
+            belemQuestion3.setQuestion("Em que século foi construida a Torre de Belem?");
+            belemQuestion3.setRightAnswer(belemQuestion3rAns);
+            belemQuestion3.setOptions(belemQuestion3Options);
+
+            questionRepository.save(belemQuestion3);
 
 
             // Pop. Question3
@@ -99,6 +116,7 @@ public class Application {
             List<Question> questionList = new ArrayList<>();
             questionList.add(question1);
             questionList.add(question2);
+            questionList.add(belemQuestion3);
 
             Quiz quiz1 = new Quiz();
             quiz1.setQuestionsList(questionList);
@@ -241,7 +259,165 @@ public class Application {
             locationRepository.save(clerigos);
 
 
+            //Palacio da Pena
 
+            // Pop. Pena Question1
+            Question penaQuestion1 = new Question();
+
+
+            List<String> penaOptions = new ArrayList<>();
+            String penaRAns = "Sintra";
+            penaOptions.add("Oeiras");
+            penaOptions.add("Moscavide");
+            penaOptions.add("Carcavelos");
+            penaOptions.add(penaRAns);
+
+            penaQuestion1.setQuestion("Onde fica o Plácio da Pena?");
+            penaQuestion1.setRightAnswer(penaRAns);
+            penaQuestion1.setOptions(penaOptions);
+
+            questionRepository.save(penaQuestion1);
+
+            // Pop. Pena Question2
+            Question penaQuestion2 = new Question();
+
+
+            List<String> penaOptions2 = new ArrayList<>();
+            String penaRAns2 = "Arquitetura Revivalista";
+            penaOptions2.add("Manuelino");
+            penaOptions2.add("Gótico");
+            penaOptions2.add(penaRAns2);
+            penaOptions2.add("Moderno");
+
+            penaQuestion2.setQuestion("Qual o estilo dominante da Torre dos Clérigos?");
+            penaQuestion2.setRightAnswer(penaRAns2);
+            penaQuestion2.setOptions(penaOptions2);
+
+            questionRepository.save(penaQuestion2);
+
+            //Populate Pena Quizzes 1
+            List<Question> penaQuestionList = new ArrayList<>();
+            penaQuestionList.add(penaQuestion1);
+            penaQuestionList.add(penaQuestion2);
+
+            Quiz penaQuiz = new Quiz();
+            penaQuiz.setQuestionsList(penaQuestionList);
+            quizRepository.save(penaQuiz);
+
+            //Populate Palacio da pena
+            Location pena = new Location();
+
+            pena.setName("Palácio da Pena");
+            pena.setQuiz(penaQuiz);
+
+            locationRepository.save(pena);
+
+            //Castelo de Guimarães
+
+            // Pop. Guimaraes Question1
+            Question gQuestion1 = new Question();
+
+
+            List<String> gOptions = new ArrayList<>();
+            String gRAns = "Todas as anteriores";
+            gOptions.add("Oliveira do Castelo");
+            gOptions.add("Concelho de Guimarães");
+            gOptions.add("Distrito de Braga");
+            gOptions.add(gRAns);
+
+            gQuestion1.setQuestion("Onde fica o Castelo de Guimarães?");
+            gQuestion1.setRightAnswer(gRAns);
+            gQuestion1.setOptions(gOptions);
+
+            questionRepository.save(gQuestion1);
+
+            // Pop. Guimaraes Question2
+            Question gQuestion2 = new Question();
+
+
+            List<String> gOptions2 = new ArrayList<>();
+            String gRAns2 = "Dom Afonso Henriques";
+            gOptions2.add("Dom Sancho I");
+            gOptions2.add("Dom Pedro I");
+            gOptions2.add(gRAns2);
+            gOptions2.add("Dom Filipe I");
+
+            gQuestion2.setQuestion("Quem foi o primeiro Rei de Portugal?");
+            gQuestion2.setRightAnswer(gRAns2);
+            gQuestion2.setOptions(gOptions2);
+
+            questionRepository.save(gQuestion2);
+
+            //Populate Guimaraes Quizzes 1
+            List<Question> gQuestionList = new ArrayList<>();
+            gQuestionList.add(gQuestion1);
+            gQuestionList.add(gQuestion2);
+
+            Quiz gQuiz = new Quiz();
+            gQuiz.setQuestionsList(gQuestionList);
+            quizRepository.save(gQuiz);
+
+            //Populate Guimaraes
+            Location guimaraes = new Location();
+
+            guimaraes.setName("Castelo de Guimarães");
+            guimaraes.setQuiz(gQuiz);
+
+            locationRepository.save(guimaraes);
+
+
+            //Castelo de Óbidos
+
+            // Pop. Obidos Question1
+            Question oQuestion1 = new Question();
+
+
+            List<String> oOptions = new ArrayList<>();
+            String oRAns = "Santa Maria";
+            oOptions.add("Venda das Raparigas");
+            oOptions.add(oRAns);
+            oOptions.add("Terra da Gaja");
+            oOptions.add("Colo do Pito");
+
+            oQuestion1.setQuestion("Em que terra se situa o Castelo de Óbidos?");
+            oQuestion1.setRightAnswer(oRAns);
+            oQuestion1.setOptions(oOptions);
+
+            questionRepository.save(oQuestion1);
+
+            // Pop. Obidos Question2
+            Question oQuestion2 = new Question();
+
+
+            List<String> oOptions2 = new ArrayList<>();
+            String oRAns2 = "13 metros";
+            oOptions2.add("10 metros");
+            oOptions2.add(gRAns2);
+            oOptions2.add("9.57 metros");
+            oOptions2.add("17 metros");
+
+            oQuestion2.setQuestion("Qual a altura máxima da muralha?");
+            oQuestion2.setRightAnswer(oRAns2);
+            oQuestion2.setOptions(oOptions2);
+
+            questionRepository.save(oQuestion2);
+
+            //Populate Obidos Quizzes 1
+            List<Question> oQuestionList = new ArrayList<>();
+            oQuestionList.add(oQuestion1);
+            oQuestionList.add(oQuestion2);
+
+            Quiz oQuiz = new Quiz();
+            oQuiz.setQuestionsList(oQuestionList);
+            quizRepository.save(oQuiz);
+
+            //Populate Obidos
+            Location obidos = new Location();
+
+            obidos.setName("Castelo de Óbidos");
+            obidos.setQuiz(oQuiz);
+
+            locationRepository.save(obidos);
 
         };
     }
