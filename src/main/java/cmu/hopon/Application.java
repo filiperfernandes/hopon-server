@@ -392,7 +392,7 @@ public class Application {
             List<String> oOptions2 = new ArrayList<>();
             String oRAns2 = "13 metros";
             oOptions2.add("10 metros");
-            oOptions2.add(gRAns2);
+            oOptions2.add(oRAns2);
             oOptions2.add("9.57 metros");
             oOptions2.add("17 metros");
 
