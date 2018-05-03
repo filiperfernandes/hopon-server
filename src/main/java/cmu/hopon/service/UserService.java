@@ -97,8 +97,12 @@ public class UserService {
         }
     }
 
-    public Iterable<User> getUsers() {
-        return userRepository.findAll();
+    public Iterable<User> getUsers(String token) {
+        if(userRepository.findByToken(token)!=null){
+            return userRepository.findAll();
+        }else{
+            return null;
+        }
     }
 
     public User getUser(String username) {

@@ -19,8 +19,8 @@ class UserController {
 
     @RequestMapping(path = "/user/list", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    @ResponseBody Iterable<User> list() {
-        return userService.getUsers();
+    @ResponseBody Iterable<User> list(@RequestParam String token) {
+        return userService.getUsers(token);
     }
 
 /*    @RequestMapping(value = "signUp", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)

@@ -20,8 +20,8 @@ public class LocationController {
     @RequestMapping(path = "/location/list", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    Iterable<Location> list() {
-        return locationService.getLocations();
+    Iterable<Location> list(@RequestParam String token) {
+        return locationService.getLocations(token);
     }
 
     @RequestMapping(value = "/location", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
@@ -36,11 +36,11 @@ public class LocationController {
     @RequestMapping(value = "/locationId", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    Location getById (@RequestParam int id) {
+    Location getById (@RequestParam int id, @RequestParam String token) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        return locationService.getLocationById(id);
+        return locationService.getLocationById(id, token);
     }
 
 }
