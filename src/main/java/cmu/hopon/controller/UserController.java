@@ -38,12 +38,11 @@ class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody User loginUser (@RequestParam Integer code,
-                                         @RequestParam String username,
-                                         @RequestParam String pubk) {
+                                         @RequestParam String username) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        return userService.login(username, code, pubk);
+        return userService.login(username, code);
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)

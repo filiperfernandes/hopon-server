@@ -39,7 +39,7 @@ public class UserService {
     private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
     private static List<String> tokenList = new ArrayList<>();
 
-    public User login(String username, long code, String pubk) {
+    public User login(String username, long code) {
 
         User exist = userRepository.findByUsername(username);
         if(exist!=null && exist.getCode()==code){
@@ -47,7 +47,6 @@ public class UserService {
             String token = genToken();
             user.setToken(token);
             tokenList.add(token);
-            user.setPubk(pubk);
             userRepository.save(user);
             return user;
         }else{
@@ -169,6 +168,8 @@ public class UserService {
 
         exist.setCurrentMonument(user.getCurrentMonument());
         exist.setAnsweredLocations(user.getAnsweredLocations());
+
+        exist.setPubk(user.getPubk());
 
         userRepository.save(exist);
 
