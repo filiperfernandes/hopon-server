@@ -31,11 +31,13 @@ public class User {
     @ElementCollection
     private List<String> answeredLocations = new ArrayList<>();
 
+    private String pubk;
+
     public User(){
     }
 
     public User(String username, long code, String token, Score score, Score currentScore,
-                String currentMonument, List<String> answeredLocations){
+                String currentMonument, List<String> answeredLocations, String pubk){
         this.code=code;
         this.username=username;
         this.token=token;
@@ -43,6 +45,7 @@ public class User {
         this.currentScore=currentScore;
         this.currentMonument=currentMonument;
         this.answeredLocations=answeredLocations;
+        this.pubk=pubk;
     }
 
     public User(String username, String token){
@@ -114,5 +117,12 @@ public class User {
         return answeredLocations;
     }
 
+    public void setPubk(String pubk){
+        this.pubk=pubk;
+    }
+
+    public String getPubk(){
+        return pubk;
+    }
 
 }

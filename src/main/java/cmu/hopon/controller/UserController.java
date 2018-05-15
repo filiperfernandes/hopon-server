@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
+
 
 @Controller
 @RequestMapping("/")
@@ -36,11 +38,12 @@ class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody User loginUser (@RequestParam Integer code,
-                                         @RequestParam String username) {
+                                         @RequestParam String username,
+                                         @RequestParam String pubk) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        return userService.login(username, code);
+        return userService.login(username, code, pubk);
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
@@ -84,5 +87,14 @@ class UserController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody String updateScore (@RequestBody User user) {
         return userService.updateUser(user);
+    }
+
+    @RequestMapping(value = "/getPubKey", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String getPubk (@RequestParam String username) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        return userService.getPubk(username);
     }
 }

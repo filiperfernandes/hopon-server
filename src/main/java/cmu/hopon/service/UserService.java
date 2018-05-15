@@ -7,6 +7,8 @@ import cmu.hopon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.KeyPair;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +39,7 @@ public class UserService {
     private static long[] codeList = new long[] {123,345,678,911,922,933,944,955};
     private static List<String> tokenList = new ArrayList<>();
 
-    public User login(String username, long code) {
+    public User login(String username, long code, String pubk) {
 
         User exist = userRepository.findByUsername(username);
         if(exist!=null && exist.getCode()==code){
@@ -45,6 +47,7 @@ public class UserService {
             String token = genToken();
             user.setToken(token);
             tokenList.add(token);
+            user.setPubk(pubk);
             userRepository.save(user);
             return user;
         }else{
@@ -138,6 +141,8 @@ public class UserService {
             user.setScore(score);
             user.setCurrentScore(currentScore);
 
+            user.setPubk("");
+
             try{
                 userRepository.save(user);
                 return USER_SIGNUP_SUCCESS_MESSAGE;
@@ -168,6 +173,16 @@ public class UserService {
         userRepository.save(exist);
 
         return USER_UPDATE_SUCCESS_MESSAGE;
+    }
+
+    public String getPubk(String username) {
+
+        User exist = userRepository.findByUsername(username);
+        if (exist!=null){
+            return exist.getPubk();
+        }else {
+            return null;
+        }
     }
 }
 
