@@ -5,16 +5,21 @@ import cmu.hopon.domain.User;
 import cmu.hopon.repository.ScoreRepository;
 import cmu.hopon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Service;
 
 import java.security.KeyPair;
 import java.security.PublicKey;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
 
 @Service
 public class UserService {
@@ -47,6 +52,7 @@ public class UserService {
             String token = genToken();
             user.setToken(token);
             tokenList.add(token);
+            user.setPubk("");
             userRepository.save(user);
             return user;
         }else{

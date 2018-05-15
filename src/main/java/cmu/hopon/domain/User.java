@@ -1,6 +1,7 @@
 package cmu.hopon.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.ConstraintComposition;
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -31,6 +32,7 @@ public class User {
     @ElementCollection
     private List<String> answeredLocations = new ArrayList<>();
 
+    @Column(length = 500)
     private String pubk;
 
     public User(){
